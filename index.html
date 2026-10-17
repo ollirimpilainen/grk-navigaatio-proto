@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>GRK ja KSBR · navigaatioprototyyppi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=Ubuntu:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#3f4c55;--dark:#252d32;--ink2:#5f6a72;--acc:#f06800;--onacc:#1c1c1c;--surf:#f4f5f6;--line:#d5d9dc;--r:0px;--head:Raleway,Roboto,sans-serif;--hw:800;--body:Roboto,Raleway,system-ui,sans-serif}
+body.ksbr{--ink:#000;--dark:#000;--ink2:#636362;--acc:#fd5000;--onacc:#000;--surf:#f5f5f4;--line:#c8c8c7;--r:4px;--head:Ubuntu,sans-serif;--hw:700;--body:Ubuntu,Raleway,system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--dark);font-family:var(--body);font-size:16px;line-height:1.45}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+a{color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* prototyypin palkki */
+.chrome{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:8px 16px;background:#1c2226;color:#d6dbde;font:500 13px/1.3 'Roboto Mono',monospace}
+.chrome b{color:#fff;font-weight:500}
+.seg{display:inline-flex;border:1px solid #5f6a72}
+.seg button{padding:7px 12px;color:#d6dbde;min-height:36px}
+.seg button[aria-pressed="true"]{background:#fff;color:#1c2226}
+.chrome .hint{margin-left:auto;color:#9aa3a9}
+@media (max-width:760px){.chrome .hint{display:none}.chrome{padding:8px 12px}}
+
+/* ylätunniste */
+.hd{position:relative;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.wrap{max-width:1440px;margin:0 auto;padding-left:40px;padding-right:40px}
+.util{display:flex;justify-content:flex-end;align-items:center;gap:16px;padding-top:8px;padding-bottom:4px;font-size:14px;color:var(--ink2)}
+.util .on{color:var(--dark);font-weight:700}
+.util button{color:var(--ink2);min-height:32px}
+.util button:hover{color:var(--dark)}
+.bar{display:flex;align-items:center;gap:4px;padding-top:8px;padding-bottom:12px}
+.logo{font:900 32px/1 var(--head);color:var(--ink);margin-right:28px;letter-spacing:.01em;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
+body.ksbr .logo{font-weight:700}
+.logo i{font-style:normal;color:var(--acc)}
+.nav{display:flex;align-items:center;gap:2px}
+.mi{display:inline-flex;align-items:center;gap:6px;padding:12px;font-weight:500;color:var(--dark);border-bottom:3px solid transparent;min-height:48px;white-space:nowrap}
+.mi:hover{border-bottom-color:var(--line)}
+.mi[aria-expanded="true"],.mi.cur{border-bottom-color:var(--acc)}
+.chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .15s}
+[aria-expanded="true"] > .chev{transform:rotate(180deg)}
+.cta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:var(--onacc);font-weight:700;padding:12px 18px;border-radius:var(--r);min-height:48px;white-space:nowrap}
+.cta[aria-expanded="true"]{box-shadow:inset 0 -3px 0 var(--dark)}
+.mob{display:none}
+
+/* pudotusvalikko */
+.panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 40px rgba(20,28,33,.16)}
+.panel[hidden]{display:none}
+.pin{padding-top:28px;padding-bottom:24px}
+.mega{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px}
+.mh{display:block;font:var(--hw) 17px/1.25 var(--head);color:var(--dark);text-decoration:none}
+.mh:hover{color:var(--acc)}
+.msub{display:block;font:500 11px/1.2 'Roboto Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);margin:6px 0 10px}
+.mlist{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.ml{display:block;padding:6px 0;font-size:15px;text-decoration:none}
+.ml:hover{color:var(--acc);text-decoration:underline}
+.ml.an{color:var(--ink2)}
+.ml.an::before{content:"# "}
+.list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 32px;max-width:980px}
+.li{display:block;padding:10px 0;font-weight:500;border-bottom:1px solid var(--line);text-decoration:none}
+.li:hover{color:var(--acc)}
+.li.d1{padding-left:20px;font-weight:400;font-size:15px}
+.li.d1::before{content:"› ";color:var(--ink2)}
+.li small,.row small{display:block;font-size:13px;font-weight:400;color:var(--ink2)}
+.new{display:inline-block;font:700 10px/1 'Roboto Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:#a34500;border:1px solid #f0a46a;padding:3px 4px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+body.ksbr .new{color:#a33300;border-color:#ffb08a}
+.pfoot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:15px;color:var(--ink2)}
+.hub{font-weight:700;color:var(--dark);text-decoration:none;display:inline-flex;gap:8px;min-height:32px;align-items:center}
+.hub:hover{color:var(--acc)}
+.hub::after{content:"→"}
+
+/* sivu */
+.main{padding-top:40px;padding-bottom:80px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--ink2);list-style:none;margin:0;padding:0}
+.crumbs li+li::before{content:"/";margin-right:8px;color:var(--line)}
+.crumbs a{color:var(--ink2);text-underline-offset:3px}
+.pt{font:900 56px/1.05 var(--head);margin:20px 0 12px;max-width:1000px}
+body.ksbr .pt{font-weight:700}
+.url{font:400 15px/1.4 'Roboto Mono',monospace;color:var(--ink2);margin:0;word-break:break-word}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:6px 10px;background:var(--surf);border-radius:var(--r)}
+.chip::before{content:"";width:10px;height:10px;border:2px solid var(--ink2)}
+.chip.on::before{background:var(--acc);border-color:var(--acc)}
+.chip.os::before{border:0;width:6px;height:6px;border-radius:50%;background:var(--ink2)}
+.chip.ext::before{display:none}
+.avoin{font:700 11px/1 'Roboto Mono',monospace;letter-spacing:.05em;text-transform:uppercase;background:#fff2cc;color:#5c4a00;padding:6px 8px}
+.hifi{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--onacc);background:var(--acc);padding:10px 14px;border-radius:var(--r);text-decoration:none;min-height:44px}
+.desc{font-size:19px;color:var(--ink);max-width:820px;margin:20px 0 0}
+.kh{font:var(--hw) 22px/1.2 var(--head);margin:48px 0 16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{display:block;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-height:76px;background:#fff;text-decoration:none}
+.card:hover{border-color:var(--dark)}
+.card b{display:block;font-weight:700}
+.card small{display:block;color:var(--ink2);font-size:13px;margin-top:4px}
+.card .k{display:block;margin-top:10px;font-size:13px;color:var(--ink2)}
+.legend{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 24px;font-size:13px;color:var(--ink2)}
+.legend .chip{background:none;padding:0;font-weight:400}
+
+/* mobiili */
+@media (max-width:1180px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .util{display:none}
+  .nav,.cta,.panel{display:none !important}
+  .bar{padding-top:8px;padding-bottom:8px}
+  .logo{font-size:26px;margin-right:auto}
+  .mob{display:flex;align-items:center;gap:4px}
+  .ib{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .mb{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 10px;font-weight:700;font-size:15px}
+  .ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .sheet{position:absolute;left:0;right:0;top:100%;height:calc(100vh - 100%);height:calc(100dvh - 100%);overflow-y:auto;background:#fff;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .sheet[hidden]{display:none}
+  .lvl{display:flex;align-items:center;padding:6px 8px;border-bottom:1px solid var(--line);background:var(--surf)}
+  .back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;font-size:15px;font-weight:500;color:var(--ink2)}
+  .ltitle{font:var(--hw) 22px/1.2 var(--head);padding:20px 16px 8px;margin:0}
+  .hubrow{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 16px;font-weight:700;border-bottom:1px solid var(--line);text-decoration:none}
+  .hubrow::after{content:"→";color:var(--acc)}
+  .row{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:17px;font-weight:500;text-decoration:none}
+  .row .tx{flex:1}
+  .row .ico{color:var(--ink2);width:20px;height:20px}
+  .row.an{font-weight:400;color:var(--ink2)}
+  .row.cta-row{background:var(--acc);color:var(--onacc);font-weight:700;border-radius:var(--r);margin:16px;width:auto;border:0}
+  .row.cta-row .ico{color:var(--onacc)}
+  .sfoot{margin-top:auto;padding:16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;font-size:14px;color:var(--ink2);border-top:1px solid var(--line)}
+  .sfoot .on{color:var(--dark);font-weight:700}
+  .sfoot button{color:var(--ink2);min-height:44px}
+  .sinfo{padding:4px 16px 16px;font-size:14px;color:var(--ink2);margin:0}
+  .pt{font-size:36px}
+  .desc{font-size:17px}
+  .main{padding-top:20px}
+}
+@media (min-width:1181px){.sheet{display:none !important}}
+</style>
+</head>
+<body class="grk">
+
+<div class="chrome">
+  <b>Navigaatioprototyyppi</b>
+  <span>Sivusto</span>
+  <span class="seg" role="group" aria-label="Sivusto">
+    <button type="button" data-site="grk" aria-pressed="true">grk.fi</button><button type="button" data-site="ksbr" aria-pressed="false">ksbr.fi</button>
+  </span>
+  <span class="hint">Avaa valikot ja klikkaa sivua. Murupolku ja kortit vievät eteenpäin. Kavenna ikkunaa, niin näet mobiilivalikon.</span>
+</div>
+
+<header class="hd">
+  <div class="wrap util" id="util"></div>
+  <div class="wrap bar">
+    <a class="logo" id="logo" href="#"></a>
+    <nav class="nav" id="nav" aria-label="Päävalikko"></nav>
+    <button type="button" class="cta" id="cta"></button>
+    <div class="mob">
+      <button type="button" class="ib" aria-label="Haku"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      <button type="button" class="mb" id="mb" aria-expanded="false" aria-controls="sheet"></button>
+    </div>
+  </div>
+  <div class="panel" id="panel" hidden><div class="wrap pin" id="pin"></div></div>
+  <nav class="sheet" id="sheet" aria-label="Päävalikko" hidden></nav>
+</header>
+
+<main class="wrap main" id="main"></main>
+
+<script>
+(function () {
+  'use strict';
+  var slug = function (s) { return s.toLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/å/g, 'a').replace(/↗/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); };
+  var N = function (label, o, kids) { var n = { label: label, kids: kids || null }; for (var k in o) n[k] = o[k]; return n; };
+  var KSBR_PROTO = 'https://ollirimpilainen.github.io/ksbr-proto/';
+
+  var SITES = {
+    grk: {
+      key: 'grk', domain: 'grk.fi', logo: 'GRK', dot: true, langs: ['FI', 'SE', 'EE', 'EN'],
+      home: N('Etusivu', { url: '/', on: true, desc: 'Etusivu reitittää: hero, yhteyshenkilöhaku ja neljä ovea. Kävijä tuntee GRK:n jo, joten tärkein tehtävä on viedä oikeaan paikkaan.' }),
+      top: [
+        N('Palvelut', { url: '/palvelut/', on: true, mega: true, hub: 'Kaikki palvelut ja toteutusmallit', info: 'Sarakkeen otsikko on työ, jota asiakas hakee. Liiketoiminnan nimi alaotsikkona.', desc: 'Mitä GRK tekee. Sarake per liiketoiminta, ja hubissa myös toteutusmallit KVR, ST ja allianssi.' }, [
+          N('Infra- ja maarakentaminen', { sub: 'Taito ja Väylä', url: '/taito-ja-vayla/', on: true }, [N('Tie- ja katurakentaminen'), N('Maarakentaminen ja pohjatyöt'), N('Sillat'), N('Kunnallistekniikka'), N('Louhinta ja kalliorakentaminen'), N('Teollisuusrakentaminen'), N('Viherrakentaminen')]),
+          N('Päällystys ja asfaltointi', { sub: 'Päällystys', url: '/paallystys/' }, [N('Asfaltointi'), N('Valuasfaltti', { uusi: true }), N('Päällysteen korjaus'), N('Rakenteen parantaminen'), N('Kierrätysasfaltti'), N('Asfalttiasemat ja massa')]),
+          N('Pohjarakentaminen ja paalutus', { sub: 'Erikoispohjarakentaminen', url: '/erikoispohjarakentaminen/', on: true }, [N('Porapaalutus', { uusi: true }), N('Lyöntipaalutus ja suurpaalut'), N('Stabilointi ja pohjanvahvistus'), N('Kaivantojen tuennat ja ankkuroinnit'), N('Menetelmät', { on: true, uusi: true, desc: 'Mitä kullakin menetelmällä saa aikaan ja mitkä ovat sen rajat, ilman konelistaa.' }), N('KSBR ↗', { site: 'ksbr' })]),
+          N('Rautatiet ja raitiotiet', { sub: 'Rata', url: '/rata/' }, [N('Yksityisraiteet'), N('Raiderakentaminen'), N('Rautateiden järjestelmät ja turvalaitteet'), N('Rata- ja turvalaitekunnossapito'), N('Sähkörata- ja vahvavirtakunnossapito'), N('Metro'), N('Raitiotiet')]),
+          N('Sähköverkot ja sähköasemat', { sub: 'Power', url: '/power/' }, [N('Sähköverkot ja verkkoyhtiöt', { uusi: true }), N('Sähköasemat, voimajohdot ja kaapeloinnit'), N('Uusiutuvan energian sähkötyöt')]),
+          N('Kiertotalous ja vastaanotto', { sub: 'Kiertotalous', url: '/kiertotalous/' }, [N('Maa-ainesten vastaanotto'), N('Haastavat jakeet', { uusi: true }), N('Purku- ja betonijäte'), N('Kiertomateriaalit ja kiviainekset'), N('Biohiili ja pelletti'), N('Ympäristörakentaminen ja sivuvirrat')])
+        ]),
+        N('Toimialat', { url: '/toimialat/', on: true, hub: 'Kaikki toimialat', info: 'Kenen hankkeisiin rakennamme. Lista on kattava, kasvualat ensin.', desc: 'Kenen hankkeisiin GRK tekee työtä. Toimialasivu on hankkeen kokonaisuuden koti.' }, [
+          N('Datakeskukset', { desc: 'Esirakentaminen, perustukset, liittymä ja sähköasema. Englanniksi data centre civil works.' }),
+          N('Energia', { on: true, desc: 'Tuuli- ja aurinkopuistot, akkuvarastot ja sähköverkot kokonaisuutena, GRK ja KSBR yhdessä.' }, [N('Balance of Plant', { uusi: true, desc: 'Tehdään ensin englanniksi.' })]),
+          N('Teollisuus', { desc: 'Tehtaat, sähköistys, raiteet ja perustukset sekä satamat ja logistiikka.' }),
+          N('Kaupungit ja väylät', { uusi: true, desc: 'Kunnat ja Väylävirasto. Uskottavuuden sivu: referenssit, laatu ja nimetty vastaava. Ohjaa palveluihin.' })
+        ]),
+        N('Referenssit', { url: '/referenssit/', on: true, flat: true, desc: 'Haku ja suodattimet: palvelu, toimiala, toteutusmalli, maa, alue ja asiakastyyppi.' }, [N('Vaativat kohteet', { desc: 'Kokoelma.' }), N('Hailuodon kiinteä yhteys', { on: true, sub: 'Case-sivu', desc: 'Esimerkki case-sivupohjasta.' })]),
+        N('Vastaanottopaikat', { url: '/vastaanottopaikat/', flat: true, desc: '24 vastaanotto- ja kiviainespistettä. Mobiili ensin: aukiolot, vaaka, ohjeet ja numero.' }, [N('Paikkakuntasivu (pohja)', { url: '/vastaanottopaikat/{paikkakunta}/', sub: 'Pohja' })]),
+        N('Yritys', { url: '/yritys/', hub: 'Yritys-etusivu', info: 'Laskutusohjeet vain Toimittajille ja laskutus -sivulla.' }, [N('GRK lyhyesti'), N('Laatu, turvallisuus ja kalusto', { desc: 'ISO 45001, 9001 ja 14001 sekä turvallisuusluvut.' }), N('Vastuullisuus'), N('Konserni', { desc: 'GRK Suomi Oy, GRK Sverige AB, GRK Eesti AS ja KSBR perustietoineen.' }), N('Sijoittajat ↗', { ext: 'sijoittajat.grk.fi' }), N('Uutiset ja media')]),
+        N('Ura', { url: '/ura/', hub: 'Ura-etusivu', info: 'Ilmoitukset ovat TalentAdoressa.' }, [N('Avoimet työpaikat'), N('Työ GRK:lla'), N('Ammattipolut', { uusi: true }), N('Harjoittelu ja kesätyö'), N('Uratarinat')])
+      ],
+      cta: N('Yhteystiedot', { url: '/yhteystiedot/', on: true, hub: 'Kaikki yhteystiedot', info: 'Vaihde +358 10 321 4110', desc: 'Asiaohjaus, liiketoimintojen vastuuhenkilöt, yhtiöt, toimipisteet ja laskutus.' }, [N('Yhteyshenkilöt', { on: true, desc: 'Haku nimellä, palvelulla ja paikkakunnalla.' }), N('Tarjouspyyntö', { on: true, url: '/tarjouspyynto/' }), N('Toimittajille ja laskutus'), N('Media'), N('Työmaatiedotteet', { uusi: true }), N('Sponsorointi')])
+    },
+    ksbr: {
+      key: 'ksbr', domain: 'ksbr.fi', logo: 'KSBR', dot: false, langs: ['FI', 'EN', 'SV'],
+      home: N('Etusivu', { url: '/', on: true, hifi: 'index.html', desc: 'Brändihaun pääkohde. Joka kolmas etusivun kävijä jatkaa yhteystietoihin.' }),
+      top: [
+        N('Toimialat', { url: '/toimialat/', mega: true, hub: 'Kaikki toimialat', info: 'Toimialat ovat KSBR:n ainoa myyntiakseli. Menetelmät ovat osioita, joihin voi linkittää.', desc: 'Koontisivu kaikille toimialoille ja KSBR:n luvuille.' }, [
+          N('Energia', {}, [N('Tuulivoima', { on: true, hifi: 'tuulivoima.html' }), N('Akkuenergiavarastot', { uusi: true }), N('Sähköasemat ja verkot', { avoin: true, desc: 'Avoin: kaksi ohutta sivua yhdeksi?' })]),
+          N('Teollisuus', { on: true, hifi: 'teollisuus.html' }, []),
+          N('Datakeskukset', { uusi: true }, []),
+          N('Infra', {}, []),
+          N('Pysäköinti ja toimitilat', { url: '/toimialat/pysakointitalot/' }, []),
+          N('Betonirakentaminen', { on: true, hifi: 'betonirakentaminen.html' }, [N('Paikallavalu', { anchor: true }), N('Liukuvalu', { anchor: true }), N('Jännitetyt säiliöt', { anchor: 'sailiot' }), N('Betonirungot', { anchor: 'rungot' })])
+        ]),
+        N('Referenssit', { url: '/referenssit/', on: true, flat: true, hifi: 'referenssit.html', desc: 'Listaus ja case-sivut kohteen nimellä.' }, [N('Lestijärven tuulipuisto', { on: true, sub: 'Case-sivu', hifi: 'referenssi-lestijarvi.html' })]),
+        N('Ura', { url: '/ura/', on: true, hifi: 'ura.html', hub: 'Ura-sivu' }, [N('Avoimet työpaikat', { anchor: 'avoimet' }), N('Kesätyö ja harjoittelu', { anchor: 'kesatyo' }), N('Uratarinat', { anchor: 'tarinat' })]),
+        N('KSBR', { url: '/ksbr/', on: true, hifi: 'meista.html', hub: 'Meistä', desc: 'Omistajat, liikevaihto ja arvot.' }, [N('Suunnitteluyhteistyö', { on: true, hifi: 'suunnitteluyhteistyo.html' }), N('Toteutusmallit', { on: true, hifi: 'toteutusmallit.html' }), N('Laatu, turvallisuus ja sertifikaatit', { on: true, url: '/ksbr/laatu-ja-turvallisuus/', hifi: 'laatu.html' }), N('Vastuullisuus'), N('Ajankohtaista', { desc: 'Uutiset ja artikkelit. Uutinen linkittää aina palvelusivulle. Tietopankkia ei tehdä.' }), N('GRK-konserni ↗', { site: 'grk' })])
+      ],
+      cta: N('Yhteystiedot', { url: '/yhteystiedot/', on: true, hifi: 'yhteystiedot.html', hub: 'Kaikki yhteystiedot', info: 'info@ksbr.fi', desc: 'Yhteystiedot, yhteyshenkilöt toimialoittain ja tarjouspyyntö.' }, [N('Yhteyshenkilöt', { on: true, hifi: 'yhteyshenkilot.html' }), N('Lähetä tarjouspyyntö', { on: true, url: '/yhteystiedot/tarjouspyynto/', hifi: 'tarjouspyynto.html' }), N('Laskutustiedot', { anchor: 'laskutustiedot' }), N('Media')])
+    }
+  };
+
+  // osoitteet ja hakemisto: url -> polku
+  Object.keys(SITES).forEach(function (k) {
+    var S = SITES[k]; S.index = {}; S.index['/'] = [];
+    var fin = function (n, base, path) {
+      if (!n.url && !n.ext && !n.site) n.url = n.anchor ? base + '#' + (n.anchor === true ? slug(n.label) : n.anchor) : base + slug(n.label) + '/';
+      var p = path.concat([n]);
+      if (n.url) S.index[n.url] = p;
+      var own = n.url && n.url.indexOf('#') < 0 ? n.url : base;
+      (n.kids || []).forEach(function (c) { fin(c, own, p); });
+    };
+    S.top.forEach(function (n) { fin(n, '/', []); }); fin(S.cta, '/', []);
+    S.all = S.top.concat([S.cta]);
+  });
+
+  var state = { site: 'grk', path: [], open: null, mpath: [] };
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  var RIGHT = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+  var newTag = function (n) { return n.uusi ? '<span class="new">Uusi</span>' : ''; };
+  var clean = function (l) { return l.replace(' ↗', ''); };
+  var hrefOf = function (n) {
+    if (n.site) return '#' + n.site + ':/';
+    if (n.ext) return '#' + state.site + ':ext:' + encodeURIComponent(n.ext);
+    return '#' + state.site + ':' + encodeURIComponent(n.url);
+  };
+  var label = function (n) { return esc(clean(n.label)) + (n.site || n.ext ? ' ↗' : ''); };
+  var status = function (n) {
+    if (n.ext) return ['Vie sivustolle ' + n.ext, 'chip ext'];
+    if (n.anchor) return ['Osio sivulla, ei omaa sivua', 'chip os'];
+    if (n.on) return ['Suunniteltu kankaalle', 'chip on'];
+    return ['Rakenteessa, ei vielä kankaalla', 'chip'];
+  };
+
+  function parseHash() {
+    var h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    var m = h.match(/^(grk|ksbr):(.*)$/);
+    if (!m) return { site: 'grk', path: [], ext: null };
+    var S = SITES[m[1]];
+    if (m[2].indexOf('ext:') === 0) {
+      var ext = m[2].slice(4), found = null;
+      Object.keys(S.index).forEach(function (u) { var p = S.index[u]; (p.length ? p[p.length - 1].kids || [] : S.all).forEach(function (c) { if (c.ext === ext) found = p.concat([c]); }); });
+      return { site: m[1], path: found || [], ext: ext };
+    }
+    return { site: m[1], path: S.index[m[2]] || [] };
+  }
+
+  function renderHeader() {
+    var S = SITES[state.site];
+    document.body.className = S.key;
+    document.querySelectorAll('.seg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.site === S.key)); });
+    $('logo').innerHTML = esc(S.logo) + (S.dot ? '<i>.</i>' : '');
+    $('logo').href = '#' + S.key + ':/';
+    $('logo').setAttribute('aria-label', S.domain + ' etusivu');
+    $('util').innerHTML = '<button type="button">Haku</button>' + S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('') +
+      (S.key === 'ksbr' ? '<a href="#grk:/" style="text-decoration:none">A GRK Company ↗</a>' : '');
+    $('nav').innerHTML = S.top.map(function (n, i) {
+      var cur = state.path[0] === n ? ' cur' : '';
+      if (n.flat || !n.kids || !n.kids.length) return '<a class="mi' + cur + '" href="' + hrefOf(n) + '" style="text-decoration:none"' + (cur ? ' aria-current="page"' : '') + '>' + esc(n.label) + '</a>';
+      return '<button type="button" class="mi' + cur + '" data-open="' + i + '" aria-expanded="' + (state.open === i) + '" aria-controls="panel">' + esc(n.label) + CHEV + '</button>';
+    }).join('');
+    var ci = S.top.length;
+    $('cta').innerHTML = esc(S.cta.label) + CHEV;
+    $('cta').dataset.open = ci;
+    $('cta').setAttribute('aria-expanded', String(state.open === ci));
+    $('cta').setAttribute('aria-controls', 'panel');
+    renderPanel();
+    renderSheet();
+  }
+
+  function renderPanel() {
+    var S = SITES[state.site], on = state.open == null ? null : S.all[state.open];
+    if (!on) { $('panel').hidden = true; $('pin').innerHTML = ''; return; }
+    var html = '';
+    if (on.mega) {
+      html = '<div class="mega">' + on.kids.map(function (c) {
+        return '<div><a class="mh" href="' + hrefOf(c) + '">' + label(c) + newTag(c) + '</a>' + (c.sub ? '<span class="msub">' + esc(c.sub) + '</span>' : '') +
+          '<div class="mlist">' + (c.kids || []).map(function (k) { return '<a class="ml' + (k.anchor ? ' an' : '') + '" href="' + hrefOf(k) + '">' + label(k) + newTag(k) + '</a>'; }).join('') + '</div></div>';
+      }).join('') + '</div>';
+    } else {
+      html = '<div class="list">' + on.kids.map(function (c) {
+        return '<div><a class="li" href="' + hrefOf(c) + '">' + label(c) + newTag(c) + (c.sub ? '<small>' + esc(c.sub) + '</small>' : '') + '</a>' +
+          (c.kids || []).map(function (k) { return '<a class="li d1" href="' + hrefOf(k) + '">' + label(k) + newTag(k) + '</a>'; }).join('') + '</div>';
+      }).join('') + '</div>';
+    }
+    html += '<div class="pfoot"><a class="hub" href="' + hrefOf(on) + '">' + esc(on.hub || on.label) + '</a><span>' + esc(on.info || '') + '</span></div>';
+    $('pin').innerHTML = html;
+    $('panel').hidden = false;
+  }
+
+  function renderSheet() {
+    var S = SITES[state.site], open = state.menu, mp = state.mpath;
+    $('mb').setAttribute('aria-expanded', String(!!open));
+    $('mb').innerHTML = open
+      ? '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Sulje'
+      : '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Valikko';
+    if (!open) { $('sheet').hidden = true; return; }
+    var cur = mp.length ? mp[mp.length - 1] : null;
+    var list = cur ? cur.kids || [] : S.all;
+    var html = '';
+    if (cur) {
+      html += '<div class="lvl"><button type="button" class="back" data-back="1"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>' + esc(mp.length > 1 ? mp[mp.length - 2].label : 'Valikko') + '</button></div>' +
+        '<p class="ltitle">' + esc(cur.label) + '</p><a class="hubrow" href="' + hrefOf(cur) + '">' + esc(cur.hub || ('Avaa ' + cur.label)) + '</a>';
+    }
+    html += list.map(function (n, i) {
+      var kids = n.kids && n.kids.length && !n.flat;
+      var cls = 'row' + (!cur && n === S.cta ? ' cta-row' : '') + (n.anchor ? ' an' : '');
+      var inner = '<span class="tx">' + label(n) + newTag(n) + (n.sub ? '<small>' + esc(n.sub) + '</small>' : '') + '</span>' + (kids ? RIGHT : '');
+      return kids ? '<button type="button" class="' + cls + '" data-drill="' + i + '">' + inner + '</button>' : '<a class="' + cls + '" href="' + hrefOf(n) + '">' + inner + '</a>';
+    }).join('');
+    if (cur && cur.info) html += '<p class="sinfo">' + esc(cur.info) + '</p>';
+    html += '<div class="sfoot">' + S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('') +
+      (S.key === 'ksbr' ? '<a href="#grk:/" style="text-decoration:none">A GRK Company ↗</a>' : '') + '</div>';
+    $('sheet').innerHTML = html;
+    $('sheet').hidden = false;
+  }
+
+  function renderPage(extNode) {
+    var S = SITES[state.site], path = state.path;
+    var node = path.length ? path[path.length - 1] : S.home;
+    var st = status(node);
+    var crumbs = '<li>' + (path.length ? '<a href="#' + S.key + ':/">Etusivu</a>' : '<span aria-current="page">Etusivu</span>') + '</li>' +
+      path.map(function (n, i) { return '<li>' + (i < path.length - 1 ? '<a href="' + hrefOf(n) + '">' + esc(clean(n.label)) + '</a>' : '<span aria-current="page">' + esc(clean(n.label)) + '</span>') + '</li>'; }).join('');
+    var kids = path.length ? (node.kids || []) : S.all;
+    var html = '<ol class="crumbs" aria-label="Murupolku">' + crumbs + '</ol>' +
+      '<h1 class="pt">' + esc(clean(node.label)) + '</h1>' +
+      '<p class="url">' + esc(node.ext ? node.ext : S.domain + node.url) + '</p>' +
+      '<div class="meta"><span class="' + st[1] + '">' + esc(st[0]) + '</span>' + (node.uusi ? '<span class="new" style="margin-left:0">Uusi sivu</span>' : '') + (node.avoin ? '<span class="avoin">Avoin päätös</span>' : '') +
+      (node.hifi ? '<a class="hifi" href="' + KSBR_PROTO + node.hifi + '" target="_blank" rel="noopener">Avaa hi-fi-sivu ↗</a>' : '') + '</div>' +
+      (node.desc ? '<p class="desc">' + esc(node.desc) + '</p>' : '');
+    if (kids.length) {
+      html += '<h2 class="kh">' + (path.length ? 'Tämän sivun alla' : 'Ylävalikon kohdat') + '</h2><div class="cards">' + kids.map(function (k) {
+        var s = status(k);
+        return '<a class="card" href="' + hrefOf(k) + '"><b>' + label(k) + newTag(k) + '</b>' + (k.sub || k.desc ? '<small>' + esc(k.sub || k.desc.split('. ')[0]) + '</small>' : '') + '<span class="k">' + esc(k.site ? 'Vaihtaa sivustoa' : s[0]) + '</span></a>';
+      }).join('') + '</div>';
+    }
+    html += '<div class="legend"><span class="chip on">Suunniteltu kankaalle</span><span class="chip">Rakenteessa, ei vielä kankaalla</span><span class="chip os">Osio sivulla</span><span><span class="new" style="margin-left:0">Uusi</span> ei ole nykyisellä sivustolla</span></div>';
+    $('main').innerHTML = html;
+    document.title = clean(node.label) + ' · ' + S.domain + ' · navigaatioprototyyppi';
+  }
+
+  function route() {
+    var r = parseHash();
+    state.site = r.site; state.path = r.path; state.open = null; state.menu = false; state.mpath = [];
+    renderHeader(); renderPage();
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-open],[data-drill],[data-back],[data-site],#mb');
+    if (!t) { if (state.open != null && !e.target.closest('#panel')) { state.open = null; renderHeader(); } return; }
+    if (t.dataset.site) { location.hash = t.dataset.site + ':/'; return; }
+    if (t.id === 'mb') { state.menu = !state.menu; state.mpath = []; renderSheet(); return; }
+    if (t.dataset.back) { state.mpath.pop(); renderSheet(); return; }
+    if (t.dataset.drill != null) {
+      var S = SITES[state.site], cur = state.mpath.length ? state.mpath[state.mpath.length - 1] : null;
+      state.mpath.push((cur ? cur.kids : S.all)[+t.dataset.drill]); renderSheet(); $('sheet').scrollTop = 0; return;
+    }
+    if (t.dataset.open != null) { var i = +t.dataset.open; state.open = state.open === i ? null : i; renderHeader(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (state.open != null) { var i = state.open; state.open = null; renderHeader(); var b = document.querySelector('[data-open="' + i + '"]'); if (b) b.focus(); }
+    else if (state.menu) { state.menu = false; renderSheet(); $('mb').focus(); }
+  });
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
