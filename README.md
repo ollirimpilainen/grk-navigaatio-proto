@@ -22,4 +22,6 @@ Prototyyppi on yksi tiedosto, `index.html`, eikä vaadi build-vaihetta. Se on ju
 
 Rakenne tulee dokumentista GRK · IA, sivukartta ja navigaatio (v6 ja 17.10.2026 tehdyt muutokset) sekä KSBR:n IA v1.3:sta. Muutokset 17.10.2026: GRK:n toimialoihin tuli Kaupungit ja väylät, ja Tietopankkia ei tehdä kummallekaan sivustolle. KSBR:n Ajankohtaista on KSBR-valikossa.
 
+Muutokset 20.10.2026: palvelut ovat liiketoimintasivun palvelukortteja (osioita), eivät omia sivuja, eikä Menetelmät-sivua tehdä. Laatu, turvallisuus ja kalusto on nyt Laatu ja turvallisuus. Vastaanottopaikat, Laatu ja turvallisuus, Vastuullisuus ja Avoimet työpaikat on suunniteltu kankaalle.
+
 Rakenteen muutos tehdään `index.html`:n `SITES`-puuhun.
