@@ -73,6 +73,9 @@ body.ksbr .logo{font-weight:700}
 .panel.drop .pin{max-width:none;padding:6px 20px 14px}
 .panel.drop .list{grid-template-columns:1fr;max-width:none;gap:0}
 .panel.drop .pfoot{margin-top:10px;padding-top:12px}
+.panel.drop.wide{width:620px}
+.panel.drop.wide .list{display:block;columns:2;column-gap:28px}
+.panel.drop.wide .list>div{break-inside:avoid}
 .pin{padding-top:28px;padding-bottom:24px}
 .mega{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px}
 .mh{display:block;font:var(--hw) 17px/1.25 var(--head);color:var(--dark);text-decoration:none}
@@ -214,7 +217,7 @@ body.ksbr .pt{font-weight:700}
         ]),
         N('Referenssit', { url: '/referenssit/', on: true, flat: true, desc: 'Vain referenssihaku: haku ja suodattimet palvelu, toimiala, toteutusmalli, maa, alue ja asiakastyyppi. Ei kokoelmasivuja (21.10.). Case-sivut ovat hakutuloksia.' }, [N('Hailuodon kiinteä yhteys', { on: true, sub: 'Case-sivu', desc: 'Esimerkki case-sivupohjasta.' })]),
         N('Ajankohtaista', { url: '/ajankohtaista/', flat: true, uusi: false, desc: 'Uutiset, tiedotteet ja artikkelit. Uutinen linkittää hankkeen referenssiin ja palveluun. Päävalikossa 21.10.' }),
-        N('Vastaanottopaikat', { url: '/vastaanottopaikat/', on: true, hub: 'Kaikki vastaanottopaikat ja kartta', info: 'Paikkakunnat aakkosjärjestyksessä yhdestä tietolähteestä. Paikkojen määrä on avoin (14 tai 19).', desc: 'Pudotusvalikossa paikkakunnat, joista pääsee suoraan paikkakuntasivulle. Listaussivulla lähimmät paikat, haku ja sijainti, jaesuodatin, auki nyt, Soita ja Reittiohje, kartta. Asfalttiasemat omana ryhmänään. Mobiili ensin.' }, [N('Lähin paikka sijaintisi mukaan', { anchor: 'lahin' }), N('[Paikkakunta A]', { url: '/vastaanottopaikat/{paikkakunta}/', sub: 'Paikkakuntasivu (pohja)', desc: 'Aukiolo, vaaka, jakeet, ohjeet, suora numero ja toimipisteen yhteystiedot.' }), N('[Paikkakunta B]', { url: '/vastaanottopaikat/{paikkakunta}/' }), N('[Paikkakunta C]', { url: '/vastaanottopaikat/{paikkakunta}/' }), N('Asfalttiasemat', { anchor: 'asfalttiasemat', sub: 'Nurmijärvi, Jyväskylä, Kajaani' })]),
+        N('Vastaanottopaikat', { url: '/vastaanottopaikat/', on: true, hub: 'Kaikki vastaanottopaikat ja kartta', info: '20 vastaanottopaikkaa aakkosjärjestyksessä yhdestä tietolähteestä (grk.fi:n toimipistekartta 8.9.2026). Lisäksi 4 kiviainesaluetta ja 3 asfalttiasemaa listaussivulla.', desc: 'Pudotusvalikossa paikkakunnat, joista pääsee suoraan paikkakuntasivulle. Listaussivulla lähimmät paikat, haku ja sijainti, jaesuodatin, auki nyt, Soita ja Reittiohje, kartta. Asfalttiasemat omana ryhmänään. Mobiili ensin.' }, [N('Lähin paikka sijaintisi mukaan', { anchor: 'lahin' }), N('Airaksela', { url: '/vastaanottopaikat/airaksela/' }), N('Ala-Anttila', { url: '/vastaanottopaikat/ala-anttila/' }), N('Hammaslahti', { url: '/vastaanottopaikat/hammaslahti/' }), N('Ii', { url: '/vastaanottopaikat/ii/' }), N('Isosuo', { url: '/vastaanottopaikat/isosuo/' }), N('Kanteenmaa', { url: '/vastaanottopaikat/kanteenmaa/' }), N('Kokkovuori', { url: '/vastaanottopaikat/kokkovuori/' }), N('Kyyrönsuo', { url: '/vastaanottopaikat/kyyronsuo/' }), N('Lappeenranta', { url: '/vastaanottopaikat/lappeenranta/' }), N('Lappila', { url: '/vastaanottopaikat/lappila/' }), N('Metsä-Kivelä', { url: '/vastaanottopaikat/metsa-kivela/' }), N('Muhos', { url: '/vastaanottopaikat/muhos/' }), N('Mustikkakangas', { url: '/vastaanottopaikat/mustikkakangas/' }), N('Mäntsälä', { url: '/vastaanottopaikat/mantsala/' }), N('Nurmijärvi', { url: '/vastaanottopaikat/nurmijarvi/', sub: 'Paikkakuntasivu (pohja)', desc: 'Aukiolo, vaaka, jakeet, ohjeet, suora numero ja toimipisteen yhteystiedot.' }), N('Pehkeensuo', { url: '/vastaanottopaikat/pehkeensuo/' }), N('Piilonsuo', { url: '/vastaanottopaikat/piilonsuo/' }), N('Sipoo', { url: '/vastaanottopaikat/sipoo/' }), N('Tarastenjärvi', { url: '/vastaanottopaikat/tarastenjarvi/' }), N('Yrtinkangas', { url: '/vastaanottopaikat/yrtinkangas/' }), N('Asfalttiasemat', { anchor: 'asfalttiasemat', sub: 'Nurmijärvi, Jyväskylä, Kajaani' }), N('Kiviainesalueet', { anchor: 'kiviainesalueet', sub: 'Rantakulma, Röykkä, Loviisa, Öljytie (Sipoo)' })]),
         N('Yritys', { url: '/yritys/', hub: 'Yritys-etusivu', info: 'Laskutusohjeet vain Toimittajille ja laskutus -sivulla.' }, [N('GRK lyhyesti'), N('Laatu ja turvallisuus', { on: true, desc: 'Turvallisuus edellä ja turvallisuusluvut, laadun varmistus, ladattavat sertifikaatit ja pätevyydet (ISO 9001, 14001, 45001, RALA, R1/K1 ym.).' }), N('Vastuullisuus', { on: true, desc: 'Ympäristö, ihmiset ja hallinto yhdellä sivulla osioina. Päästöluvut, raportit ja EcoVadis.' }), N('Konserni', { desc: 'GRK Suomi Oy, GRK Sverige AB, GRK Eesti AS ja KSBR perustietoineen.' })]),
         N('Ura', { url: '/ura/', hub: 'Ura-etusivu', info: 'Ilmoitukset ovat TalentAdoressa.' }, [N('Avoimet työpaikat', { on: true, desc: 'Haku ja suodattimet listan yläpuolella, avoin hakemus, kesätyö ja Miksi GRK:lle.' }), N('Työ GRK:lla'), N('Harjoittelu ja kesätyö'), N('Uratarinat')])
       ],
@@ -345,14 +348,16 @@ body.ksbr .pt{font-weight:700}
     $('pin').innerHTML = html;
     var pn = $('panel');
     pn.classList.toggle('drop', !on.mega);
+    var wide = !on.mega && on.kids.length > 12, pw = wide ? 620 : 340;
+    pn.classList.toggle('wide', wide);
     pn.style.left = '';
     if (!on.mega) {
       var btn = state.open === S.top.length ? $('cta') : document.querySelector('.nav [data-open="' + state.open + '"]');
       var hd = pn.offsetParent || document.body;
       if (btn) {
         var bl = btn.getBoundingClientRect().left - hd.getBoundingClientRect().left;
-        if (state.open === S.top.length) bl = btn.getBoundingClientRect().right - hd.getBoundingClientRect().left - 340;
-        pn.style.left = Math.max(0, Math.min(bl, hd.clientWidth - 342)) + 'px';
+        if (state.open === S.top.length) bl = btn.getBoundingClientRect().right - hd.getBoundingClientRect().left - pw;
+        pn.style.left = Math.max(0, Math.min(bl, hd.clientWidth - pw - 2)) + 'px';
       }
     }
     pn.hidden = false;
