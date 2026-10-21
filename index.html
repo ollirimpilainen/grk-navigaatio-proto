@@ -31,7 +31,23 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset
 /* ylätunniste */
 .hd{position:relative;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
 .wrap{max-width:1440px;margin:0 auto;padding-left:40px;padding-right:40px}
-.util{display:flex;justify-content:flex-end;align-items:center;gap:16px;padding-top:8px;padding-bottom:4px;font-size:14px;color:var(--ink2)}
+.util{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:8px;padding-bottom:4px;font-size:14px;color:var(--ink2)}
+.ul,.ur{display:flex;align-items:center;gap:18px}
+.util a{color:var(--ink2);text-decoration:none}.util a:hover{color:var(--dark)}
+.usep{width:1px;height:16px;background:var(--line)}
+.cty{position:relative}
+.cty summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;min-height:32px;font-weight:700;color:var(--dark)}
+.cty summary::-webkit-details-marker{display:none}
+.cty[open] .chev{transform:rotate(180deg)}
+.cty ul{position:absolute;right:0;top:100%;z-index:40;min-width:250px;margin:6px 0 0;padding:6px 0;list-style:none;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(20,28,33,.16)}
+.cty li a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 16px;color:var(--dark);font-size:15px}
+.cty li a:hover{background:var(--surf)}
+.cty small{display:block;font-size:12px;color:var(--ink2)}
+.cty b{color:var(--acc);font-weight:700}
+.sutil{padding:8px 16px 24px}
+.sul{margin:20px 0 4px;font:500 11px/1.2 'Roboto Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
+.srow{display:block;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--dark);font-weight:500}
+.slangs{display:flex;gap:16px}.slangs .on{font-weight:700;color:var(--dark)}
 .util .on{color:var(--dark);font-weight:700}
 .util button{color:var(--ink2);min-height:32px}
 .util button:hover{color:var(--dark)}
@@ -177,7 +193,9 @@ body.ksbr .pt{font-weight:700}
 
   var SITES = {
     grk: {
-      key: 'grk', domain: 'grk.fi', logo: 'GRK', dot: true, langs: ['FI', 'SE', 'EE', 'EN'],
+      key: 'grk', domain: 'grk.fi', logo: 'GRK', dot: true, langs: ['FI', 'SE', 'EE', 'EN'], country: 'Suomi',
+      countries: [['GRK Suomi', 'grk.fi', true], ['GRK Sverige', 'grk.fi/se'], ['GRK Eesti', 'grk.fi/ee'], ['GRK Group · English', 'grk.fi/en']],
+      util: [N('Sijoittajat ↗', { ext: 'sijoittajat.grk.fi', desc: 'IR-sivusto. Yläpalkissa 21.10.' }), N('Media', { url: '/media/', desc: 'Mediapankki, logot ja kuvat sekä mediayhteyshenkilö. Uutiset ovat Ajankohtaista-sivulla.' })],
       home: N('Etusivu', { url: '/', on: true, desc: 'Etusivu reitittää: hero, yhteyshenkilöhaku ja neljä ovea. Kävijä tuntee GRK:n jo, joten tärkein tehtävä on viedä oikeaan paikkaan.' }),
       top: [
         N('Palvelut', { url: '/palvelut/', on: true, mega: true, hub: 'Kaikki palvelut ja toteutusmallit', info: 'Sarakkeen otsikko on työ, jota asiakas hakee. Liiketoiminnan nimi alaotsikkona.', desc: 'Mitä GRK tekee. Sarake per liiketoiminta, ja hubissa myös toteutusmallit KVR, ST ja allianssi. Palvelut ovat palvelukortteja liiketoimintasivun Mitä teemme -haitarissa, eivät omia sivuja (PRJ-269, PRJ-270).' }, [
@@ -195,8 +213,9 @@ body.ksbr .pt{font-weight:700}
           N('Kaupungit ja väylät', { uusi: true, desc: 'Kunnat ja Väylävirasto. Uskottavuuden sivu: referenssit, laatu ja nimetty vastaava. Ohjaa palveluihin.' })
         ]),
         N('Referenssit', { url: '/referenssit/', on: true, flat: true, desc: 'Vain referenssihaku: haku ja suodattimet palvelu, toimiala, toteutusmalli, maa, alue ja asiakastyyppi. Ei kokoelmasivuja (21.10.). Case-sivut ovat hakutuloksia.' }, [N('Hailuodon kiinteä yhteys', { on: true, sub: 'Case-sivu', desc: 'Esimerkki case-sivupohjasta.' })]),
+        N('Ajankohtaista', { url: '/ajankohtaista/', flat: true, uusi: false, desc: 'Uutiset, tiedotteet ja artikkelit. Uutinen linkittää hankkeen referenssiin ja palveluun. Päävalikossa 21.10.' }),
         N('Vastaanottopaikat', { url: '/vastaanottopaikat/', on: true, hub: 'Kaikki vastaanottopaikat ja kartta', info: 'Paikkakunnat aakkosjärjestyksessä yhdestä tietolähteestä. Paikkojen määrä on avoin (14 tai 19).', desc: 'Pudotusvalikossa paikkakunnat, joista pääsee suoraan paikkakuntasivulle. Listaussivulla lähimmät paikat, haku ja sijainti, jaesuodatin, auki nyt, Soita ja Reittiohje, kartta. Asfalttiasemat omana ryhmänään. Mobiili ensin.' }, [N('Lähin paikka sijaintisi mukaan', { anchor: 'lahin' }), N('[Paikkakunta A]', { url: '/vastaanottopaikat/{paikkakunta}/', sub: 'Paikkakuntasivu (pohja)', desc: 'Aukiolo, vaaka, jakeet, ohjeet, suora numero ja toimipisteen yhteystiedot.' }), N('[Paikkakunta B]', { url: '/vastaanottopaikat/{paikkakunta}/' }), N('[Paikkakunta C]', { url: '/vastaanottopaikat/{paikkakunta}/' }), N('Asfalttiasemat', { anchor: 'asfalttiasemat', sub: 'Nurmijärvi, Jyväskylä, Kajaani' })]),
-        N('Yritys', { url: '/yritys/', hub: 'Yritys-etusivu', info: 'Laskutusohjeet vain Toimittajille ja laskutus -sivulla.' }, [N('GRK lyhyesti'), N('Laatu ja turvallisuus', { on: true, desc: 'Turvallisuus edellä ja turvallisuusluvut, laadun varmistus, ladattavat sertifikaatit ja pätevyydet (ISO 9001, 14001, 45001, RALA, R1/K1 ym.).' }), N('Vastuullisuus', { on: true, desc: 'Ympäristö, ihmiset ja hallinto yhdellä sivulla osioina. Päästöluvut, raportit ja EcoVadis.' }), N('Konserni', { desc: 'GRK Suomi Oy, GRK Sverige AB, GRK Eesti AS ja KSBR perustietoineen.' }), N('Sijoittajat ↗', { ext: 'sijoittajat.grk.fi' }), N('Uutiset ja media')]),
+        N('Yritys', { url: '/yritys/', hub: 'Yritys-etusivu', info: 'Laskutusohjeet vain Toimittajille ja laskutus -sivulla.' }, [N('GRK lyhyesti'), N('Laatu ja turvallisuus', { on: true, desc: 'Turvallisuus edellä ja turvallisuusluvut, laadun varmistus, ladattavat sertifikaatit ja pätevyydet (ISO 9001, 14001, 45001, RALA, R1/K1 ym.).' }), N('Vastuullisuus', { on: true, desc: 'Ympäristö, ihmiset ja hallinto yhdellä sivulla osioina. Päästöluvut, raportit ja EcoVadis.' }), N('Konserni', { desc: 'GRK Suomi Oy, GRK Sverige AB, GRK Eesti AS ja KSBR perustietoineen.' })]),
         N('Ura', { url: '/ura/', hub: 'Ura-etusivu', info: 'Ilmoitukset ovat TalentAdoressa.' }, [N('Avoimet työpaikat', { on: true, desc: 'Haku ja suodattimet listan yläpuolella, avoin hakemus, kesätyö ja Miksi GRK:lle.' }), N('Työ GRK:lla'), N('Harjoittelu ja kesätyö'), N('Uratarinat')])
       ],
       cta: N('Yhteystiedot', { url: '/yhteystiedot/', on: true, hub: 'Kaikki yhteystiedot', info: 'Vaihde +358 10 321 4110', desc: 'Asiaohjaus, liiketoimintojen vastuuhenkilöt, yhtiöt, toimipisteet ja laskutus.' }, [N('Yhteyshenkilöt', { on: true, desc: 'Haku nimellä, palvelulla ja paikkakunnalla.' }), N('Tarjouspyyntö', { on: true, url: '/tarjouspyynto/' }), N('Toimittajille ja laskutus'), N('Media'), N('Työmaatiedotteet', { uusi: true }), N('Sponsorointi')])
@@ -231,7 +250,7 @@ body.ksbr .pt{font-weight:700}
       var own = n.url && n.url.indexOf('#') < 0 ? n.url : base;
       (n.kids || []).forEach(function (c) { fin(c, own, p); });
     };
-    S.top.forEach(function (n) { fin(n, '/', []); }); fin(S.cta, '/', []);
+    S.top.forEach(function (n) { fin(n, '/', []); }); fin(S.cta, '/', []); (S.util || []).forEach(function (n) { fin(n, '/', []); });
     S.all = S.top.concat([S.cta]);
   });
 
@@ -255,6 +274,23 @@ body.ksbr .pt{font-weight:700}
     return ['Rakenteessa, ei vielä kankaalla', 'chip'];
   };
 
+  function utilHtml(S) {
+    var sites = S.key === 'grk' ? '<span class="on">GRK</span><a href="#ksbr:/">KSBR ↗</a>' : '<span class="on">KSBR</span><a href="#grk:/">GRK ↗</a>';
+    var links = (S.util || []).map(function (n) { return '<a href="' + hrefOf(n) + '">' + label(n) + '</a>'; }).join('');
+    var pick = S.countries
+      ? '<details class="cty"><summary>' + esc(S.country) + CHEV + '</summary><ul>' + S.countries.map(function (c) { return '<li><a href="#grk:/"' + (c[2] ? ' aria-current="true"' : '') + '><span>' + esc(c[0]) + '<small>' + esc(c[1]) + '</small></span>' + (c[2] ? '<b>✓</b>' : '<b>↗</b>') + '</a></li>'; }).join('') + '</ul></details>'
+      : S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('');
+    return '<div class="ul">' + sites + '</div><div class="ur">' + links + (links ? '<span class="usep" aria-hidden="true"></span>' : '') + '<button type="button">Haku</button>' + pick + '</div>';
+  }
+  function sheetUtil(S) {
+    var h = '<div class="sutil">';
+    if (S.countries) h += '<p class="sul">Maa</p>' + S.countries.map(function (c) { return '<a class="srow" href="#grk:/">' + esc(c[0]) + (c[2] ? ' ✓' : ' ↗') + '</a>'; }).join('');
+    else h += '<p class="sul">Kieli</p><p class="slangs">' + S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('') + '</p>';
+    h += '<p class="sul">Konserni ja sidosryhmät</p>' + (S.util || []).map(function (n) { return '<a class="srow" href="' + hrefOf(n) + '">' + label(n) + '</a>'; }).join('') +
+      (S.key === 'grk' ? '<a class="srow" href="#ksbr:/">KSBR ↗</a>' : '<a class="srow" href="#grk:/">GRK ↗</a>');
+    return h + '</div>';
+  }
+
   function parseHash() {
     var h = decodeURIComponent(location.hash.replace(/^#/, ''));
     var m = h.match(/^(grk|ksbr):(.*)$/);
@@ -262,7 +298,7 @@ body.ksbr .pt{font-weight:700}
     var S = SITES[m[1]];
     if (m[2].indexOf('ext:') === 0) {
       var ext = m[2].slice(4), found = null;
-      Object.keys(S.index).forEach(function (u) { var p = S.index[u]; (p.length ? p[p.length - 1].kids || [] : S.all).forEach(function (c) { if (c.ext === ext) found = p.concat([c]); }); });
+      Object.keys(S.index).forEach(function (u) { var p = S.index[u]; (p.length ? p[p.length - 1].kids || [] : S.all.concat(S.util || [])).forEach(function (c) { if (c.ext === ext) found = p.concat([c]); }); });
       return { site: m[1], path: found || [], ext: ext };
     }
     return { site: m[1], path: S.index[m[2]] || [] };
@@ -275,8 +311,7 @@ body.ksbr .pt{font-weight:700}
     $('logo').innerHTML = esc(S.logo) + (S.dot ? '<i>.</i>' : '');
     $('logo').href = '#' + S.key + ':/';
     $('logo').setAttribute('aria-label', S.domain + ' etusivu');
-    $('util').innerHTML = '<button type="button">Haku</button>' + S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('') +
-      (S.key === 'ksbr' ? '<a href="#grk:/" style="text-decoration:none">A GRK Company ↗</a>' : '');
+    $('util').innerHTML = utilHtml(S);
     $('nav').innerHTML = S.top.map(function (n, i) {
       var cur = state.path[0] === n ? ' cur' : '';
       if (n.flat || !n.kids || !n.kids.length) return '<a class="mi' + cur + '" href="' + hrefOf(n) + '" style="text-decoration:none"' + (cur ? ' aria-current="page"' : '') + '>' + esc(n.label) + '</a>';
@@ -344,8 +379,7 @@ body.ksbr .pt{font-weight:700}
       return kids ? '<button type="button" class="' + cls + '" data-drill="' + i + '">' + inner + '</button>' : '<a class="' + cls + '" href="' + hrefOf(n) + '">' + inner + '</a>';
     }).join('');
     if (cur && cur.info) html += '<p class="sinfo">' + esc(cur.info) + '</p>';
-    html += '<div class="sfoot">' + S.langs.map(function (c, i) { return '<span class="' + (i ? '' : 'on') + '">' + c + '</span>'; }).join('') +
-      (S.key === 'ksbr' ? '<a href="#grk:/" style="text-decoration:none">A GRK Company ↗</a>' : '') + '</div>';
+    if (!cur) html += sheetUtil(S);
     $('sheet').innerHTML = html;
     $('sheet').hidden = false;
   }

@@ -24,4 +24,6 @@ Rakenne tulee dokumentista GRK · IA, sivukartta ja navigaatio (v6 ja 17.10.2026
 
 Muutokset 20.10.2026: palvelut ovat liiketoimintasivun palvelukortteja (osioita), eivät omia sivuja, eikä Menetelmät-sivua tehdä. Laatu, turvallisuus ja kalusto on nyt Laatu ja turvallisuus. Vastaanottopaikat, Laatu ja turvallisuus, Vastuullisuus ja Avoimet työpaikat on suunniteltu kankaalle.
 
+Muutokset 21.10.2026: Referenssit on vain hakusivu, Ammattipolut pois, Ajankohtaista päävalikkoon, Yhteystiedot tavallinen valikon kohta, megavalikko vain Palveluilla, Vastaanottopaikoille paikkakuntavalikko. Yläpalkissa konsernin sivustot (GRK, KSBR ↗), Sijoittajat ↗, Media, haku ja maavalinta pudotusvalikkona (GRK Suomi, Sverige, Eesti, Group · English).
+
 Rakenteen muutos tehdään `index.html`:n `SITES`-puuhun.
