@@ -20,10 +20,10 @@ Prototyyppi on yksi tiedosto, `index.html`, eikä vaadi build-vaihetta. Se on ju
 
 ## Lähteet
 
-Rakenne tulee dokumentista GRK · IA, sivukartta ja navigaatio (v6 ja 17.10.2026 tehdyt muutokset) sekä KSBR:n IA v1.3:sta. Muutokset 17.10.2026: GRK:n toimialoihin tuli Kaupungit ja väylät, ja Tietopankkia ei tehdä kummallekaan sivustolle. KSBR:n Ajankohtaista on KSBR-valikossa.
+Rakenne tulee dokumentista GRK · IA, sivukartta ja navigaatio (v6 ja 17.10.2026 tehdyt muutokset) sekä KSBR:n IA v1.3:sta. Muutokset 17.10.2026: GRK:n toimialoihin tuli Kaupungit ja väylät, ja Tietopankkia ei tehdä kummallekaan sivustolle. KSBR:n Ajankohtaista oli tuolloin KSBR-valikossa.
 
 Muutokset 20.10.2026: palvelut ovat liiketoimintasivun palvelukortteja (osioita), eivät omia sivuja, eikä Menetelmät-sivua tehdä. Laatu, turvallisuus ja kalusto on nyt Laatu ja turvallisuus. Vastaanottopaikat, Laatu ja turvallisuus, Vastuullisuus ja Avoimet työpaikat on suunniteltu kankaalle.
 
-Muutokset 21.10.2026: Referenssit on vain hakusivu, Ammattipolut pois, Ajankohtaista päävalikkoon, Yhteystiedot tavallinen valikon kohta, megavalikko vain Palveluilla, Vastaanottopaikoille paikkakuntavalikko. Yläpalkissa konsernin sivustot (GRK, KSBR ↗), Sijoittajat ↗, Media, haku ja maavalinta pudotusvalikkona (GRK Suomi, Sverige, Eesti, Group · English).
+Muutokset 21.10.2026: Referenssit on vain hakusivu, Ammattipolut pois, Ajankohtaista päävalikkoon, Yhteystiedot tavallinen valikon kohta, megavalikko vain Palveluilla, Vastaanottopaikoille paikkakuntavalikko. Yläpalkissa konsernin sivustot (GRK, KSBR ↗), Sijoittajat ↗, Media, haku ja maavalinta pudotusvalikkona (GRK Suomi, Sverige, Eesti, Group · English). KSBR:n Ajankohtaista siirtyi KSBR-valikosta päävalikkoon Referenssien jälkeen kuten GRK:lla.
 
 Rakenteen muutos tehdään `index.html`:n `SITES`-puuhun.
